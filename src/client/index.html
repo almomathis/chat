@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matChat - Public</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="login-form">
+            <div class="login-container">
+                <h2>matChat - Public</h2>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button onclick="login()">Enter Chat</button>
+            </div>
+        </div>
+    
+        <div id="chat-container" style="display: none;">
+            <div id="chat-header">
+                <img src="group1.webp" class="avatar" alt="Group">
+                <h2>Server 1</h2>
+            </div>
+    
+            <div id="messages-container">
+                <ul id="messages"></ul>
+                
+                <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                    <span class="typing-indicator-text"></span>
+                    <div class="typing-indicator-dots">
+                        <div class="typing-indicator-dot"></div>
+                        <div class="typing-indicator-dot"></div>
+                        <div class="typing-indicator-dot"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="chat-form">
+                <button type="button" id="emoji-btn" class="icon-btn"><i class="far fa-smile"></i></button>
+                <input type="text" id="m" autocomplete="off" placeholder="Type a message">
+                <input type="file" id="file-input" accept="image/*,audio/*" style="display: none;">
+                <button type="button" id="upload-btn" class="icon-btn"><i class="fas fa-paperclip"></i></button>
+                <button type="submit" id="send-btn" class="icon-btn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts/client.js"></script>
+</body>
+</html>
