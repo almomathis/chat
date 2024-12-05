@@ -1,9 +1,9 @@
 {
   "name": "chat",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "api/server.js"
+    "start": "node src/server/server.js"
   },
   "keywords": [],
   "author": "",

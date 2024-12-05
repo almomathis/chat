@@ -3,8 +3,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { handleSocketConnection } = require('../src/server/socketHandlers');
-const { handleLogin } = require('../src/server.js');
+const { handleSocketConnection } = require('./socketHandlers');
+const { handleLogin } = require('./userAuth');
 
 const app = express();
 const server = http.createServer(app);
@@ -12,12 +12,12 @@ const io = socketIo(server);
 
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '../src/client')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.post('/login', handleLogin);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../src/client/index.html'));
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 io.on('connection', handleSocketConnection);
