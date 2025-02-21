@@ -1,0 +1,11 @@
+services:
+  homepage:
+    build: .
+    container_name: homepage-container
+    ports:
+      - "2000:80"
+    deploy:
+      update_config:
+        order: start-first
+      restart_policy:
+        condition: any
