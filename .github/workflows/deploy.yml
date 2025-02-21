@@ -1,0 +1,33 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Newest Change and Rebuild
+        uses: appleboy/ssh-action@master
+        with:
+          host: 45.92.216.222
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd home
+            git pull origin main
+            docker-compose build --no-cache
+
+      - name: Restart Docker Container
+        uses: appleboy/ssh-action@master
+        with:
+          host: 45.92.216.222
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd home
+            docker-compose down
+            docker-compose up -d
