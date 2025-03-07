@@ -1,5 +1,5 @@
 services:
-  chat-app:
+  chat:
     build:
       context: .
       dockerfile: Dockerfile
