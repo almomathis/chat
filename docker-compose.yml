@@ -1,11 +1,15 @@
+version: '3'
+
 services:
-  homepage:
-    build: .
-    container_name: chat-container
+  chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:80"
-    deploy:
-      update_config:
-        order: start-first
-      restart_policy:
-        condition: any
+      - "8443:8443"
+    volumes:
+      - ./src/client:/app/src/client
+    environment:
+      - NODE_ENV=production
+      - PORT=8443
+    restart: unless-stopped
