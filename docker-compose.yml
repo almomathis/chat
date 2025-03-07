@@ -6,7 +6,7 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ./client:/app/client
+      - ./src/client:/app/src/client
     environment:
       - NODE_ENV=production
       - PORT=8443
