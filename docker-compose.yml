@@ -1,12 +1,12 @@
 services:
-  chat:
+  chat-app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8443:8443"
     volumes:
-      - ./src/client:/app/src/client
+      - ./client:/app/client
     environment:
       - NODE_ENV=production
       - PORT=8443
