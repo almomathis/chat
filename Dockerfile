@@ -2,7 +2,7 @@ FROM node:18-alpine
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm install
-COPY src/server ./src/server
-RUN mkdir -p src/client
+COPY server ./server
+COPY client ./client
 EXPOSE 8443
-CMD ["npm", "start"]
+CMD ["node", "server/server.js"]
