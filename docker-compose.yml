@@ -1,13 +1,25 @@
+version: '3.8'
+
 services:
   chat-app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: chat-app
+    restart: always
     ports:
-      - "8443:8443"
+      - "${PORT:-8443}:8443"
     volumes:
-      - ./src/client:/app/src/client
+      - ./src:/app/src
     environment:
       - NODE_ENV=production
       - PORT=8443
-    restart: unless-stopped
+    networks:
+      - chat-network
+
+volumes:
+  portainer_data:
+
+networks:
+  chat-network:
+    driver: bridge
