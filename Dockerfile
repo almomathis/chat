@@ -1,18 +1,23 @@
 FROM node:18-alpine
 
+# Create app directory
 WORKDIR /app
 
-# Copy package files first for better caching
+# Copy package files
 COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy application code
 COPY . .
 
-# Expose the port the app runs on
+# Make sure the application binds to 0.0.0.0
+ENV HOST=0.0.0.0
+ENV PORT=8443
+
+# Expose port explicitly
 EXPOSE 8443
 
-# Command to run the app
+# Command to run the application
 CMD ["node", "src/server/server.js"]
