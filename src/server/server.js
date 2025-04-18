@@ -23,6 +23,6 @@ app.get('/', (req, res) => {
 io.on('connection', handleSocketConnection);
 
 const PORT = process.env.PORT || 8443;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
