@@ -9,8 +9,6 @@ services:
     restart: always
     ports:
       - "8443:8443"
-    volumes:
-      - ./src:/app/src
     environment:
       - NODE_ENV=production
       - PORT=8443
