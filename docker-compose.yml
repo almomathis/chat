@@ -8,17 +8,15 @@ services:
     container_name: chat-app
     restart: always
     ports:
-      - "${PORT:-8443}:8443"
+      - "8443:8443"
     volumes:
       - ./src:/app/src
     environment:
       - NODE_ENV=production
       - PORT=8443
+      - HOST=0.0.0.0
     networks:
       - chat-network
-
-volumes:
-  portainer_data:
 
 networks:
   chat-network:
