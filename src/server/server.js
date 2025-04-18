@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 
 io.on('connection', handleSocketConnection);
 
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 8443;
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`Server running on ${HOST}:${PORT}`);
 });
